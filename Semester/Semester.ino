@@ -75,17 +75,61 @@ void calcJoy(){
 
 void enableCol(int col){
   for(int i=0;i<=56;i+=8){
-    Serial.println(col+i);
     leds[col+i] = CRGB::Yellow;
   }
-  playSounds();
+  playSounds(col);
   FastLED.show();
 }
 
-void playSounds(){
-  for(int i=0;i<NUM_LEDS;i++){
-    
+void playSounds(int col){
+  int sound;
+  for(int i=0;i<=56;i+=8){
+    if(ledsEnabled[col+i][0]){
+      sound = getRow(col+i);
+      Serial.println(getRow(col+i));
+      switch(sound){
+        case 0:
+          tone(4, 500, 50);
+        case 1:
+          tone(4, 700, 50);
+        case 2:
+          tone(4, 900, 50);
+        case 3:
+          tone(4, 1100, 50);
+        case 4:
+          tone(5, 1300, 50);
+        case 5:
+          tone(5, 1500, 50);
+        case 6:
+          tone(5, 1700, 50);
+        case 7:
+          tone(5, 1900, 50);
+      }
+      //return;
+    }
   }
+}
+
+int getCol(int led){
+  for(int c=0;c<8;c++){
+    for(int r=0;r<8;r++){
+      if(c+8*r == led){
+        return c;
+      }
+    }
+  }
+  return false;
+}
+
+int getRow(int led){
+  for(int c=0;c<8;c++){
+    for(int r=0;r<8;r++){
+      if(c+8*r == led){
+        return r;
+      }
+    }
+  }
+  return false;
 }
 
 int calcNum(){
