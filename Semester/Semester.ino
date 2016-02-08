@@ -90,20 +90,28 @@ void playSounds(int col){
       switch(sound){
         case 0:
           tone(4, 500, 50);
+          break;
         case 1:
           tone(4, 700, 50);
+          break;
         case 2:
           tone(4, 900, 50);
+          break;
         case 3:
           tone(4, 1100, 50);
+          break;
         case 4:
           tone(5, 1300, 50);
+          break;
         case 5:
           tone(5, 1500, 50);
+          break;
         case 6:
           tone(5, 1700, 50);
+          break;
         case 7:
           tone(5, 1900, 50);
+          break;
       }
       //return;
     }
