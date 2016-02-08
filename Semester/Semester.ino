@@ -21,6 +21,8 @@ void setup() {
   pinMode(10, INPUT_PULLUP);
   pinMode(11, INPUT_PULLUP);
   pinMode(6, INPUT_PULLUP);
+  tone(4, 0, 0);
+  noTone(4);
   FastLED.addLeds<PL9823, DATA_PIN, RGB>(leds, NUM_LEDS);
   Serial.begin(9600);
   //Turns them all off
@@ -37,11 +39,11 @@ void loop() {
   if(isSwitchOn()){ //If the switch is on, music should be playing
     timeOut = calcNum();
   }else{ //If music is playing, dont show the cursor
-    calcJoy();
     timerCol = 0;
   }
 
   
+  calcJoy();
   applyLEDs();
 
   
@@ -101,16 +103,16 @@ void playSounds(int col){
           tone(4, 1100, 50);
           break;
         case 4:
-          tone(5, 1300, 50);
+          tone(4, 1300, 50);
           break;
         case 5:
-          tone(5, 1500, 50);
+          tone(4, 1500, 50);
           break;
         case 6:
-          tone(5, 1700, 50);
+          tone(4, 1700, 50);
           break;
         case 7:
-          tone(5, 1900, 50);
+          tone(4, 1900, 50);
           break;
       }
       //return;
@@ -160,9 +162,9 @@ void applyLEDs(){
     }
   }
 
-  if(!isSwitchOn()){
+//  if(!isSwitchOn()){
     leds[currCol + 8*currRow] = CRGB::Green;
-  }
+//  }
   
   FastLED.show();
 }
